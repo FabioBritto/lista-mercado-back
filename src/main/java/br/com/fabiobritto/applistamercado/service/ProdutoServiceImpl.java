@@ -20,6 +20,9 @@ public class ProdutoServiceImpl implements IProdutoService {
 
 	@Override
 	public Produto criarNovoProduto(Produto produto) {
+		if(produto.getNome() == null || produto.getNome() == "") {
+			return null;
+		}
 		return repository.save(produto);
 	}
 
@@ -31,26 +34,22 @@ public class ProdutoServiceImpl implements IProdutoService {
 
 	@Override
 	public void removerProduto(Produto produto) {
-		// TODO Auto-generated method stub
-		
+		repository.delete(produto);
 	}
 
 	@Override
 	public List<Produto> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return (List<Produto>) repository.findAll();
+}
 
 	@Override
 	public List<Produto> buscarPorPalavraChave(String palavraChave) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAllByNomeContaining(palavraChave);
 	}
 
 	@Override
 	public Produto buscarPorID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findById(id).orElse(null);
 	}
 
 }
