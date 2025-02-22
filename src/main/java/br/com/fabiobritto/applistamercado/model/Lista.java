@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +42,7 @@ public class Lista {
 	 * INSERT (por exemplo), e então, quando, no banco for salvo esta lista, ele salvará também os itens
 	 */
 	@OneToMany(mappedBy = "lista", cascade = CascadeType.ALL)
-	private List<ItemLista> items;
+	private List<ItemLista> itens;
 	
 	public Lista() {
 		
@@ -87,21 +88,23 @@ public class Lista {
 		this.valorTotal = valorTotal;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public Status getStatus() {
+		return Status.valueOf(status);
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setStatus(Status status) {
+		if(status != null) {
+			this.status = status.getCode();
+		}
 	}
 	
 
-	public List<ItemLista> getItems() {
-		return items;
+	public List<ItemLista> getItens() {
+		return itens;
 	}
 
-	public void setItems(List<ItemLista> items) {
-		this.items = items;
+	public void setItens(List<ItemLista> itens) {
+		this.itens = itens;
 	}
 
 	@Override

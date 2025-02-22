@@ -1,13 +1,14 @@
 package br.com.fabiobritto.applistamercado.service;
 
-import br.com.fabiobritto.applistamercado.model.ItemLista;
+import java.util.List;
+
 import br.com.fabiobritto.applistamercado.model.Lista;
 
 public interface IListaService {
 
 	public Lista criarNovaLista(Lista novaLista);
 	public void removerLista(Integer id);
-	public void fecharLista(Integer id);
-	public void buscarPeloId(Integer id);
-	
+	public Lista fecharLista(Integer id);
+	public Lista buscarPeloId(Integer id);
+	public List<Lista> buscarTodas();
 }
