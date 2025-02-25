@@ -8,6 +8,8 @@ import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +35,8 @@ public class Lista {
 	private Double valorTotal;
 	
 	@Column(name = "status")
-	private Integer status;
+	@Enumerated(EnumType.ORDINAL)
+	private Status status;
 	
 	/*
 	 * O "mappedBy" procura dentro de "ItemLista" qual o atributo que referencia Lista
@@ -48,12 +51,12 @@ public class Lista {
 		
 	}
 
-	public Lista(Integer id, LocalDate data, String nomeMercado, Double valorTotal, Integer status) {
+	public Lista(Integer id, LocalDate data, String nomeMercado, Double valorTotal, Status status) {
 		this.id = id;
 		this.data = data;
 		this.nomeMercado = nomeMercado;
 		this.valorTotal = valorTotal;
-		this.status = status;
+		setStatus(status);
 	}
 
 	public Integer getId() {
@@ -89,12 +92,12 @@ public class Lista {
 	}
 
 	public Status getStatus() {
-		return Status.valueOf(status);
+		return status;
 	}
 
 	public void setStatus(Status status) {
 		if(status != null) {
-			this.status = status.getCode();
+			this.status = status;
 		}
 	}
 	

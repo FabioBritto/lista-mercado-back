@@ -1,7 +1,10 @@
 package br.com.fabiobritto.applistamercado.model;
 
+import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,8 +27,9 @@ public class ItemLista {
 	@Column(name = "preco_total")
 	private Double precoTotal;
 	
-	@Column(name = "concluido")
-	private Integer concluido;
+	@Column(name = "status")
+	@Enumerated(EnumType.ORDINAL)
+	private Status status;
 	
 	
 	/*
@@ -63,12 +67,12 @@ public class ItemLista {
 		this.precoTotal = precoTotal;
 	}
 
-	public Integer getConcluido() {
-		return concluido;
+	public Status getConcluido() {
+		return status;
 	}
 
-	public void setConcluido(Integer concluido) {
-		this.concluido = concluido;
+	public void setConcluido(Status status) {
+		this.status = status;
 	}
 
 	public Produto getProduto() {
@@ -83,8 +87,10 @@ public class ItemLista {
 		return lista;
 	}
 
-	public void setLista(Lista lista) {
-		this.lista = lista;
+	public void setStatus(Status status) {
+		if(status != null) {
+			this.status = status;
+		}
 	}
 
 	/*
@@ -95,7 +101,7 @@ public class ItemLista {
 	@Override
 	public String toString() {
 		return "ItemLista [numSequencia=" + numSequencia + ", quantidade=" + quantidade + ", precoTotal=" + precoTotal
-				+ ", concluido=" + concluido + ", produto=" + produto + ", lista=" + lista + "]";
+				+ ", status=" + status + ", produto=" + produto + ", lista=" + lista + "]";
 	}
 	
 	

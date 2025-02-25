@@ -21,9 +21,11 @@ public class ListaController {
 
 	@Autowired
 	private IListaService service;
+	//private ListaServiceImpl service;
 	
 	@GetMapping("/listas")
 	public ResponseEntity<List<Lista>> recuperarTodas(){
+		System.out.println("teste");
 		return ResponseEntity.ok(service.buscarTodas());
 	}
 	
