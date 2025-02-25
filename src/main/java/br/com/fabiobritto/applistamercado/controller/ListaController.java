@@ -25,7 +25,6 @@ public class ListaController {
 	
 	@GetMapping("/listas")
 	public ResponseEntity<List<Lista>> recuperarTodas(){
-		System.out.println("teste");
 		return ResponseEntity.ok(service.buscarTodas());
 	}
 	

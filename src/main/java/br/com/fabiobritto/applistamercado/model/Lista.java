@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -44,6 +46,7 @@ public class Lista {
 	 * O CascadeType.ALL me permite que eu possa, a partir uma lista populada (cheia de itens), dar um 
 	 * INSERT (por exemplo), e então, quando, no banco for salvo esta lista, ele salvará também os itens
 	 */
+	@JsonIgnore
 	@OneToMany(mappedBy = "lista", cascade = CascadeType.ALL)
 	private List<ItemLista> itens;
 	

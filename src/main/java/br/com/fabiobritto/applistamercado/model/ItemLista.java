@@ -1,5 +1,7 @@
 package br.com.fabiobritto.applistamercado.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
