@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.CascadeType;
@@ -45,8 +45,12 @@ public class Lista {
 	 * 
 	 * O CascadeType.ALL me permite que eu possa, a partir uma lista populada (cheia de itens), dar um 
 	 * INSERT (por exemplo), e então, quando, no banco for salvo esta lista, ele salvará também os itens
+	 * 
+	 * ----------------------
+	 * 
+	 * Ao recuperar o ItemLista, haverá uma lista. Eu quero que no ato da recuperação, seja ignorado o atributo "lista"
 	 */
-	@JsonIgnore
+	@JsonIgnoreProperties("lista")
 	@OneToMany(mappedBy = "lista", cascade = CascadeType.ALL)
 	private List<ItemLista> itens;
 	

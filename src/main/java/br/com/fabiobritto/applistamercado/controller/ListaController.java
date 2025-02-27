@@ -44,6 +44,7 @@ public class ListaController {
 	
 	@PostMapping("/lista")
 	public ResponseEntity<Lista> criarLista(@RequestBody Lista lista){
+		System.out.println(lista.getStatus());
 		lista = service.criarNovaLista(lista);	
 		if(lista != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(lista);

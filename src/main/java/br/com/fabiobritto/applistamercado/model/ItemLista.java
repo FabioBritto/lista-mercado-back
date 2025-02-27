@@ -1,6 +1,7 @@
 package br.com.fabiobritto.applistamercado.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.fabiobritto.applistamercado.model.enums.Status;
 import jakarta.persistence.Column;
@@ -41,6 +42,7 @@ public class ItemLista {
 	@JoinColumn(name = "tb_produto_id_produto")
 	private Produto produto;
 	
+	@JsonIgnoreProperties("itens")
 	@ManyToOne
 	@JoinColumn(name = "tb_lista_id_lista")
 	private Lista lista;
